@@ -1,5 +1,40 @@
 /* eslint-disable react/no-unescaped-entities */
-function Checkout() {
+import { useState } from "react";
+
+const Checkout = () => {
+  // Get today's date
+  const today = new Date();
+
+  // Array of weekday names
+  const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  // Calculate the index of today's weekday (0 for Sunday, 1 for Monday, etc.)
+  const todayIndex = today.getDay();
+
+  // Filter the weekdays starting from today's index
+  const remainingWeekdays = weekdays.slice(todayIndex);
+
+  // State to store selected weekdays
+  const [selectedWeekdays, setSelectedWeekdays] = useState([]);
+
+  // Function to handle weekday selection
+  const toggleWeekday = (weekday) => {
+    const isSelected = selectedWeekdays.includes(weekday);
+    if (isSelected) {
+      setSelectedWeekdays(selectedWeekdays.filter((day) => day !== weekday));
+    } else {
+      setSelectedWeekdays([...selectedWeekdays, weekday]);
+    }
+  };
+
   return (
     <>
       <form>
@@ -21,26 +56,28 @@ function Checkout() {
               <option>8</option>
               <option>9</option>
             </select>
-            {/* <input
-              type="text"
-              id="disabledTextInput"
-              className="form-control"
-              placeholder="Disabled input"
-            /> */}
           </div>
-          <div className="mb-3">
-            <label htmlFor="disabledSelect" className="form-label">
-              FOR HOW MANY DAYS YOU WANT TO EAT?
-            </label>
-            <select id="disabledSelect" className="form-select">
-              <option>Mon</option>
-              <option>Tue</option>
-              <option>Wed</option>
-              <option>Thr</option>
-              <option>Fri</option>
-              <option>Sat</option>
-              <option>Sun</option>
-            </select>
+          <div>
+            <h2>Select Weekdays</h2>
+            <p>Click on the weekdays to select them:</p>
+            <div>
+              {remainingWeekdays.map((weekday, index) => (
+                <button
+                  key={index}
+                  style={{
+                    marginRight: "5px",
+                    marginBottom: "5px",
+                    backgroundColor: selectedWeekdays.includes(weekday)
+                      ? "lightblue"
+                      : "transparent",
+                  }}
+                  onClick={() => toggleWeekday(weekday)}
+                >
+                  {weekday}
+                </button>
+              ))}
+            </div>
+            <p>Selected weekdays: {selectedWeekdays.join(", ")}</p>
           </div>
           <div className="mb-3">
             <div className="form-check">
@@ -64,6 +101,6 @@ function Checkout() {
       </form>
     </>
   );
-}
+};
 
 export default Checkout;

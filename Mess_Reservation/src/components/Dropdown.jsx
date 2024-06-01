@@ -7,13 +7,14 @@ function Dropdown() {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <>
       <div className="profile-dropdown">
         <button className="profile-toggle" onClick={toggleDropdown}>
           <img
             src="https://www.signaturemontana.com/wp-content/uploads/blank-profile-picture-973460_1280-e1444240558836.png"
-            alt="https://www.signaturemontana.com/wp-content/uploads/blank-profile-picture-973460_1280-e1444240558836.png"
+            alt="Profile"
             width="30"
             height="30"
             className="rounded-circle"
@@ -22,16 +23,16 @@ function Dropdown() {
         {isOpen && (
           <ul className="dropdown-menu">
             <li>
-              <Link href="#">Profile</Link>
+              <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <Link href="#">Settings</Link>
+              <Link to="/settings">Settings</Link>
             </li>
             <li>
               <hr />
             </li>
             <li>
-              <Link href="#">Logout</Link>
+              <Link to="/logout">Logout</Link>
             </li>
           </ul>
         )}
