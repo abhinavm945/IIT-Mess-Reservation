@@ -20,22 +20,25 @@ function Dropdown() {
             className="rounded-circle"
           />
         </button>
-        {isOpen && (
-          <ul className="dropdown-menu">
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/settings">Settings</Link>
-            </li>
-            <li>
+        <div className="dropdown-menu">
+          {isOpen ? (
+            <ul>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
               <hr />
-            </li>
-            <li>
-              <Link to="/logout">Logout</Link>
-            </li>
-          </ul>
-        )}
+              <li>
+                <Link to="/settings">Settings</Link>
+              </li>
+              <hr />
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
+            </ul>
+          ) : (
+            <p></p>
+          )}
+        </div>
       </div>
     </>
   );

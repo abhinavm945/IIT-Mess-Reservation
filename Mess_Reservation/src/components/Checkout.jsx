@@ -63,13 +63,12 @@ const Checkout = () => {
             <div>
               {remainingWeekdays.map((weekday, index) => (
                 <button
+                  type="button"
+                  className="btn btn-primary"
                   key={index}
                   style={{
                     marginRight: "5px",
                     marginBottom: "5px",
-                    backgroundColor: selectedWeekdays.includes(weekday)
-                      ? "lightblue"
-                      : "transparent",
                   }}
                   onClick={() => toggleWeekday(weekday)}
                 >
@@ -85,6 +84,7 @@ const Checkout = () => {
                 className="form-check-input"
                 type="checkbox"
                 id="disabledFieldsetCheck"
+                required
               />
               <label
                 className="form-check-label"
@@ -94,7 +94,7 @@ const Checkout = () => {
               </label>
             </div>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary btn-lg">
             CHECKOUT
           </button>
         </fieldset>

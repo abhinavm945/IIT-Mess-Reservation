@@ -1,41 +1,39 @@
-.Text{
-   color: brown;
-   border: black;
-}
-
-.Card{
-  color:blue;
+.text{
+   color: #fff;
+   display: inline-flex;
+   width: 50%;
 }
 
 .profile-dropdown {
+  right: 0;
   position: relative;
-  display: inline-block;
+  display: block;
 }
 
 .profile-toggle {
+  right: 0;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: 40px; /* Adjust this value according to your design */
+  position: right;
+  top: 40px; 
   right: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #2383f2;
+  border: 1px solid #fff;
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  list-style-type: none;
 }
 
 .dropdown-menu li {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 .dropdown-menu hr {
-  margin: 5px 0;
+  margin: 2px 0;
   border: none;
   border-top: 1px solid #ccc;
 }
@@ -49,4 +47,60 @@
 
 .dropdown-menu a:hover {
   background-color: #f0f0f0;
+}
+
+.about-title{
+  color:#2383f2;
+}
+
+.card {
+  display: inline-block;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  padding: 10px;
+  margin: 16px;
+  width: 450px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-info {
+  padding: 10px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.card-description {
+  margin: 8px 0 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.profile-span{
+  display: inline;
+}
+
+.navbar-nav{
+color:#fff;
+background-color: #fff;
 }
