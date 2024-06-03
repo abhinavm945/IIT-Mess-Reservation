@@ -1,8 +1,10 @@
 function About() {
   return (
-    <div className="about-title">
-      <h1>This is About</h1>
-    </div>
+    <>
+      <div className="about-title">
+        <h1>This is About</h1>
+      </div>
+    </>
   );
 }
 

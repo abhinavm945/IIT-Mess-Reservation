@@ -3,9 +3,11 @@ import Card from "./Card";
 function Home() {
   return (
     <>
-      <h1>This is home</h1>
-      {/* <h1 className="Text">Hello world</h1> */}
-      <Card />
+      <div className="about-title">
+        <h1>THIS IS A HOME PAGE</h1>
+        {/* <h1 className="Text">Hello world</h1> */}
+        <Card />
+      </div>
     </>
   );
 }

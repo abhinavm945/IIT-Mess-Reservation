@@ -6,6 +6,7 @@ import Mess from "./components/Mess";
 import Checkout from "./components/Checkout";
 import Cafe from "./components/Cafe";
 import Canteen from "./components/Canteen";
+import Login from "./components/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Checkout" element={<Checkout />} />
           <Route path="/Cafe" element={<Cafe />} />
           <Route path="/Canteen" element={<Canteen />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
       </Router>
     </>

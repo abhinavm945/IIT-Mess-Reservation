@@ -1,86 +1,51 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function navbar() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [isOpen, setIsOpen] = useState(false);
+const Navbar = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
-    <>
-      <div>
-        <nav
-          className="navbar navbar-expand-lg bg-body-tertiary"
-          // style={{
-          //   height: "500px",
-          // }}
-        >
-          <div
-            className="container-fluid"
-            // style={{
-            //   top: "100%",
-            // }}
-          >
-            <Link className="navbar-brand" to="/">
-              <img
-                src="https://th.bing.com/th/id/OIP.hfwtErNXjdbIMUC8t5pxagHaHa?rs=1&pid=ImgDetMain"
-                alt="Logo"
-                width="30"
-                height="30"
-              />
-              IIT MESS RESERVATION
-            </Link>
-            <div>
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="card" style={{ backgroundColor: "#2383f2" }}>
-                  <Link className="nav-link active" aria-current="page" to="/">
-                    Home
-                  </Link>
-                </li>
-                <li className="card" style={{ backgroundColor: "#2383f2" }}>
-                  <Link className="nav-link" to="/About">
-                    About
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="profile-dropdown">
-            <button className="profile-toggle" onClick={toggleDropdown}>
-              <img
-                src="https://www.signaturemontana.com/wp-content/uploads/blank-profile-picture-973460_1280-e1444240558836.png"
-                alt="Profile"
-                width="30"
-                height="30"
-                className="rounded-circle"
-              />
-              <span className="profile-span">Arun</span>
-            </button>
-          </div>
-          {isOpen ? (
-            <select>
-              <option>
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
-              </option>
-              <option>
-                <Link to="/settings">Settings</Link>
-              </option>
-              <option>
-                <Link to="/logout">Logout</Link>
-              </option>
-            </select>
-          ) : (
-            <p></p>
-          )}
-        </nav>
+    <nav className="navbar">
+      <div className="logo">
+        <img
+          src="https://th.bing.com/th/id/OIP.hfwtErNXjdbIMUC8t5pxagHaHa?rs=1&pid=ImgDetMain"
+          alt="Logo"
+          width="30"
+          height="30"
+        />
+        <Link to="/">IIT MESS RESERVATION</Link>
       </div>
-    </>
+      <div className="navLinks">
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/services">Services</Link>
+        <Link to="/contact">Contact</Link>
+      </div>
+      <div className="profile">
+        <button onClick={toggleDropdown} className="profileButton">
+          <img
+            src="https://th.bing.com/th/id/OIP.PMhANanxddOBObcYxcYOcwHaGy?rs=1&pid=ImgDetMain"
+            alt="Profile"
+            className="profilePic"
+          />
+        </button>
+        {dropdownOpen && (
+          <div className="dropdownMenu">
+            <Link to="/profile">Profile</Link>
+            <Link to="/settings">Settings</Link>
+            <Link to="/logout">Logout</Link>
+          </div>
+        )}
+      </div>
+      <button className="menuButton" onClick={toggleMenu}>
+        &#9776;
+      </button>
+    </nav>
   );
-}
+};
 
-export default navbar;
+export default Navbar;
