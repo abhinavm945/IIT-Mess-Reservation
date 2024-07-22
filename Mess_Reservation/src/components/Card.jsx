@@ -8,6 +8,7 @@ function Card() {
           src="https://st3.depositphotos.com/5365540/16330/i/450/depositphotos_163303176-stock-photo-modern-interior-of-cafeteria-or.jpg"
           className="card-img-top"
           alt="https://st3.depositphotos.com/5365540/16330/i/450/depositphotos_163303176-stock-photo-modern-interior-of-cafeteria-or.jpg"
+          height="323"
         />
         <div className="card-info">
           <h5 className="card-title">MESS MENU</h5>
@@ -19,9 +20,10 @@ function Card() {
       </Link>
       <Link to="/Cafe" className="card" style={{ display: "inline-block" }}>
         <img
-          src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNhZmV8ZW58MHx8MHx8fDA%3D"
+          src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/7b282758503959.59ff2db6492f6.jpg"
           className="card-img-top"
-          alt="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNhZmV8ZW58MHx8MHx8fDA%3D"
+          alt="https://mir-s3-cdn-cf.behance.net/project_modules/fs/7b282758503959.59ff2db6492f6.jpg"
+          height="323"
         />
         <div className="card-info">
           <h5 className="card-title">CAFE MENU</h5>
@@ -36,6 +38,7 @@ function Card() {
           src="https://www.shutterstock.com/image-photo/chef-standing-behind-full-lunch-600nw-1090719347.jpg"
           className="card-img-top"
           alt="https://www.shutterstock.com/image-photo/chef-standing-behind-full-lunch-600nw-1090719347.jpg"
+          height="323"
         />
         <div className="card-info">
           <h5 className="card-title">CANTEEN MENU</h5>

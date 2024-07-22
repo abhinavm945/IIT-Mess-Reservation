@@ -4,12 +4,19 @@
    width: 50%;
 }
 .about-title{
-  background-color:#2383f2;
-  color: #fff;
-  max-width: 100%;
-  height: 100%;
-  background-image: url("https://www.solidbackgrounds.com/images/2560x1600/2560x1600-true-blue-solid-color-background.jpg");
+  /* background-color:#166ac9; */
+  color: #000000;
+  height:fit-content;
+  background-image: url(https://th.bing.com/th/id/OIP.hfwtErNXjdbIMUC8t5pxagHaHa?rs=1&pid=ImgDetMain);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
+
+
+
+
+/*Card.CSS --------------------------------------------------*/
 
 .card {
   display: inline-block;
@@ -20,8 +27,7 @@
   padding: 12px;
   margin: 16px;
   max-width: 510px;
-  height: screen;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   cursor: pointer;
@@ -29,6 +35,7 @@
   transition: transform 0.2s, box-shadow 0.2s;
   text-decoration: none;
 }
+
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -36,7 +43,7 @@
 
 .card-photo {
   width: 100%;
-  height: auto;
+  height: 323;
   border-radius: 8px 8px 0 0;
 }
 
@@ -61,10 +68,10 @@
 }
 
 .white{
- color:#2383f2;
- display: inline-flex;
- text-decoration: none;
- margin: 8px;
+  color:#00428e;
+  display: inline-flex;
+  text-decoration: none;
+  margin: 8px;
 }
 
 .card-checkout{
@@ -86,36 +93,83 @@
   text-decoration: none;
 }
 
-.navbar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #333;
-  padding: 10px 20px;
+/* Media queries */
+
+/* Large screens (desktops) */
+@media (min-width: 1200px) {
+  .card {
+    max-width: 600px;
+    margin: 60px;
+  }
 }
 
-.logo a {
+/* Medium screens (tablets) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .card {
+    max-width: 400px;
+    margin: 20px;
+  }
+}
+
+/* Small screens (mobiles) */
+@media (max-width: 767px) {
+  .card {
+    max-width: 300px;
+    margin: 10px;
+    margin-left: 45px;
+  }
+  .card-photo {
+    height: 150px;
+  }
+  .card-info {
+    padding: 5px;
+  }
+  .card-title {
+    font-size: 1em;
+  }
+  .card-description {
+    font-size: 0.8em;
+  }
+}
+
+
+
+
+
+/* Navbar.Css --------------------------------------------------*/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #00428e;
+  color: #fff;
+}
+
+.logo {
   color: #fff;
   text-decoration: none;
   font-size: 24px;
   font-weight: bold;
 }
 
+.logo img {
+  margin-right: 10px;
+}
+
 .navLinks {
   display: flex;
-  text-decoration: none;
-  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20;
 }
 
 .navLinks a {
+  margin-right: 20px;
   color: #fff;
   text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s;
-}
-
-.navLinks a:hover {
-  color: #ddd;
+  font-weight: bold;
 }
 
 .profile {
@@ -128,7 +182,7 @@
   cursor: pointer;
 }
 
-.profilePic {
+.profilePic1 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -168,24 +222,469 @@
   cursor: pointer;
 }
 
+.menuLinks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+ margin: -0.45rem;
+}
+
+.menuLinks a {
+  color: #2a89f5;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-weight: 550;
+}
+
+
+/* Responsive design --------------------------------------------------*/
+
 @media (max-width: 768px) {
   .navLinks {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      position: absolute;
-      top: 60px;
-      right: 0;
-      background-color: #333;
-      padding: 20px;
-      border-radius: 5px;
+    display: none;
   }
-  
-  .navLinks.active {
-      display: flex;
-  }
-
   .menuButton {
-      display: block;
+    display: block;
   }
+  .navbar {
+    flex-direction: column;
+  }
+  .logo {
+    margin-bottom: 10px;
+  }
+  .profile {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    width: 30px;
+    height: 30px;
+  }
+  .profileButton img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/*Dashboard.CSS --------------------------------------------------*/
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.profile-d {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profilePic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  margin-bottom: 10px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+.nav a:hover {
+  color: #23527c;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+  }
+  .content {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-d {
+    margin-bottom: 10px;
+  }
+  .profilePic {
+    width: 50px;
+    height: 50px;
+  }
+  .nav li {
+    margin-bottom: 5px;
+  }
+}
+
+/*LOGIN CSS
+--------------------------------------------------*/
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* Login Container */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Login Card */
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Input Field */
+
+.input-field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-field i {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  font-size: 18px;
+  color: #aaa;
+}
+
+/* Error Message */
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Alternative Login */
+
+.alternative-login {
+  margin-top: 20px;
+}
+
+.alternative-login button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.alternative-login button:hover {
+  background-color: #3e8e41;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .login-card {
+    width: 90%;
+    padding: 15px;
+  }
+  .input-field input {
+    padding: 8px;
+    font-size: 14px;
+  }
+  .alternative-login button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    width: 100%;
+    padding: 10px;
+  }
+  .input-field input {
+    padding: 6px;
+    font-size: 12px;
+  }
+  .alternative-login button {
+    padding: 6px;
+    font-size: 12px;
+  }
+}
+
+/* REGISTER CSS
+--------------------------------------------------*/
+
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* Register Container */
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Register Card */
+
+.register-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Group */
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 48%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-group select {
+  width: 20%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.input-group .country-code {
+  width: 20%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px; /* Add a small margin to separate from the contact input field */
+}
+
+.input-group .contact-input {
+  width: 28%; /* Make the contact input field slightly smaller to accommodate the country code input field */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .register-container {
+    padding: 15px;
+  }
+  .register-card {
+    padding: 15px;
+  }
+  .input-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+  .input-group select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 10px;
+  }
+  .register-card {
+    padding: 10px;
+  }
+  .input-group input {
+    width: 100%;
+    padding: 6px;
+    font-size: 12px;
+  }
+  .input-group select {
+    width: 100%;
+    padding: 6px;
+    font-size: 12px;
+  }
+}
+
+/* Button Styles */
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+
+/* MENU CSS
+--------------------------------------------------*/
+
+
+.menu {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-title {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.menu-day {
+  margin-bottom: 20px;
+}
+
+.menu-day h2 {
+  font-size: 1.5em;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.menu-day ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.menu-day li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  font-size: 1.2em;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.back-link:hover {
+  background-color: #0056b3;
 }
