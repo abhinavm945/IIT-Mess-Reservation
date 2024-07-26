@@ -14,7 +14,6 @@ const cartSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-
   status: {
     type: String,
     enum: ["pending", "completed", "failed"],
@@ -22,6 +21,10 @@ const cartSchema = new mongoose.Schema({
   },
   token: {
     type: String,
+    required: true,
+  },
+  itemPrice: {
+    type: Number,
     required: true,
   },
 });

@@ -5,35 +5,32 @@ const jwt = require("jsonwebtoken"); // Import jwt for token verification
 const authenticate = require("../middleware/authenticate");
 
 // Route to save order
-router.post("/save", async (req, res) => {
-  const { cartData, token } = req.body;
-
-  console.log("Received token:", token); // Log the received token
-
+router.post('/save', authenticate, async (req, res) => {
   try {
-    if (!token) {
-      return res.status(400).json({ message: "Token is required" });
-    }
+    const { cartData, token } = req.body;
+    console.log("Received cart data:", cartData);
+    console.log("Received token:", token);
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if (!decoded) {
-      return res.status(401).json({ message: "Invalid token" });
-    }
+    // Calculate total price from cartData
+    const totalPrice = cartData.reduce((sum, cart) => {
+      return sum + cart.cartData.reduce((cartSum, item) => {
+        return cartSum + item.itemPrice;
+      }, 0);
+    }, 0);
 
-    const order = new Order({
-      userId: decoded._id,
+    const newOrder = new Order({
+      userId: req.user._id,
       cartData,
+      totalPrice,
+      status: 'pending',
       token,
-      createdAt: new Date(),
-      status: "pending",
-      totalPrice: cartData.totalPrice, // Ensure totalPrice is included here
     });
 
-    await order.save();
-    res.status(200).json({ message: "Order saved successfully" });
+    await newOrder.save();
+    res.status(200).json({ message: 'Order saved successfully' });
   } catch (error) {
-    console.error("Error saving order:", error);
-    res.status(500).json({ message: "Error saving order", error });
+    console.error('Error saving order:', error);
+    res.status(500).json({ error: 'Error saving order' });
   }
 });
 
@@ -83,8 +80,8 @@ router.get("/orders", async (req, res) => {
   }
 });
 
-router.delete("/clear", async (req, res) => {
-  const userId = req.user.id; // Assuming user ID is available in req.user
+router.delete("/clear", authenticate, async (req, res) => {
+  const userId = req.user._id; // Assuming user ID is available in req.user
 
   try {
     await Order.deleteMany({ userId });

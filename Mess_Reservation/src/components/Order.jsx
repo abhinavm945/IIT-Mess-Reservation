@@ -65,10 +65,10 @@ const Order = () => {
   }, [orderData]);
 
   const calculateItemPrice = (cartItem) => {
-    const mealTypePrice = cartItem.mealTypes
+    const mealTypePrice = (cartItem.mealTypes || [])
       .map((type) => mealPrices[type] || 0)
       .reduce((a, b) => a + b, 0);
-    return mealTypePrice * cartItem.persons * cartItem.dates.length;
+    return mealTypePrice * cartItem.persons * (cartItem.dates || []).length;
   };
 
   return (
@@ -91,25 +91,30 @@ const Order = () => {
               </tr>
             </thead>
             <tbody>
-              {orderData.map((order, index) => (
-                order.cartData.map((cartItem, cartIndex) => (
-                  <tr key={`${order._id}-${cartIndex}`}>
-                    <th scope="row">{index + 1}</th>
-                    <td>{cartItem.mealTypes.join(", ")}</td>
-                    <td>{cartItem.persons}</td>
-                    <td>{cartItem.dates.join(", ")}</td>
-                    <td>
-                      ₹{cartItem.mealTypes
-                        .map((type) => mealPrices[type] || 0)
-                        .reduce((a, b) => a + b, 0)}
-                    </td>
-                    <td>
-                      ₹{calculateItemPrice(cartItem)}
-                    </td>
-                    <td>{orderStatus}</td>
-                  </tr>
-                ))
-              ))}
+              {orderData && orderData.length > 0 ? (
+                orderData.map((order, index) =>
+                  order.cartData.map((cartItem, cartIndex) => (
+                    <tr key={`${order._id}-${cartIndex}`}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{(cartItem.mealTypes || []).join(", ")}</td>
+                      <td>{cartItem.persons}</td>
+                      <td>{(cartItem.dates || []).join(", ")}</td>
+                      <td>
+                        ₹
+                        {(cartItem.mealTypes || [])
+                          .map((type) => mealPrices[type] || 0)
+                          .reduce((a, b) => a + b, 0)}
+                      </td>
+                      <td>₹{calculateItemPrice(cartItem)}</td>
+                      <td>{orderStatus}</td>
+                    </tr>
+                  ))
+                )
+              ) : (
+                <tr>
+                  <td colSpan="7">No orders found.</td>
+                </tr>
+              )}
             </tbody>
           </table>
           {orderStatus === "Pending" && (

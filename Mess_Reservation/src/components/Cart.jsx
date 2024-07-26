@@ -28,8 +28,8 @@ const Cart = () => {
         // Calculate total price from the database
         const total = response.data.orders.reduce((sum, cart) => {
           // Debugging: Log the totalPrice for each cart item
-          console.log("Cart Total Price:", cart.totalPrice);
-          return sum + cart.totalPrice;
+          console.log("Cart Total Price:", cart.itemPrice);
+          return sum + cart.itemPrice;
         }, 0);
         setTotalPrice(total);
       } catch (error) {
@@ -53,7 +53,7 @@ const Cart = () => {
         const updatedCartItems = cartItems.filter((cart) => cart._id !== cartId);
         setCartItems(updatedCartItems);
         // Recalculate total price after deletion
-        const total = updatedCartItems.reduce((sum, cart) => sum + cart.totalPrice, 0);
+        const total = updatedCartItems.reduce((sum, cart) => sum + cart.itemPrice, 0);
         setTotalPrice(total);
       }
     } catch (error) {
@@ -97,10 +97,10 @@ const Cart = () => {
                     <td>{cartItem.persons || "N/A"}</td>
                     <td>{cartItem.dates?.join(", ") || "N/A"}</td>
                     <td>
-                      ₹{cartItem.persons > 1 ? (cartItem.totalPrice / cartItem.persons).toFixed(2) : cartItem.totalPrice}
+                      ₹{cartItem.persons > 1 ? (cartItem.itemPrice / cartItem.persons).toFixed(2) : cartItem.itemPrice}
                     </td>
                     <td>
-                      ₹{cartItem.totalPrice || "N/A"}
+                      ₹{cartItem.itemPrice || "N/A"}
                     </td>
                     <td>
                       <button

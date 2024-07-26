@@ -3,6 +3,7 @@ const router = express.Router();
 const Cart = require("../models/cart"); // Ensure this model is correctly defined
 const jwt = require("jsonwebtoken");
 const authenticate = require("../middleware/authenticate");
+const cart = require("../models/cart");
 
 router.post("/save", async (req, res) => {
   const { cartData, token } = req.body;
@@ -23,7 +24,7 @@ router.post("/save", async (req, res) => {
       token,
       createdAt: new Date(),
       status: "pending",
-      totalPrice: cartData.totalPrice,
+      itemPrice: cartData.itemPrice, // Save itemPrice here
     });
 
     await newCart.save();
@@ -59,6 +60,18 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     console.error("Error deleting cart item:", error);
     res.status(500).json({ message: "Error deleting cart item", error });
+  }
+});
+
+router.delete("/clear", async (req, res) => {
+  const userId = req.user.id; // Assuming user ID is available in req.user
+
+  try {
+    await cart.deleteMany({ userId });
+    res.status(200).json({ message: "All orders deleted successfully" });
+  } catch (error) {
+    console.error("Error clearing Cart:", error);
+    res.status(500).json({ message: "Error clearing Cart", error });
   }
 });
 

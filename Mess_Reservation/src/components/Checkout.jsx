@@ -20,7 +20,7 @@ const Checkout = () => {
     SNACKS: 20,
   };
 
-  const calculateTotalPrice = () => {
+  const calculateItemPrice = () => {
     const itemPrice = mealTypes.reduce(
       (sum, type) => sum + (mealPrices[type] || 0),
       0
@@ -49,28 +49,13 @@ const Checkout = () => {
     event.preventDefault();
     if (selectedDates.length > 0 && mealTypes.length > 0) {
       const token = localStorage.getItem("token");
-      const totalPrice = calculateTotalPrice();
+      const totalPrice = calculateItemPrice();
       const newItem = {
         persons,
         dates: selectedDates,
         mealTypes,
-        totalPrice,
+        itemPrice: totalPrice, // Include itemPrice here
       };
-
-      try {
-        const response = await axios.post(
-          "http://localhost:3000/api/saveOrder/save",
-          {
-            cartData: newItem,
-            token,
-          }
-        );
-
-        setCartData([...cartData, newItem]);
-        navigate("/cart");
-      } catch (error) {
-        console.error("Error saving order: ", error);
-      }
 
       try {
         const response = await axios.post(
@@ -84,7 +69,7 @@ const Checkout = () => {
         setCartData([...cartData, newItem]);
         navigate("/cart");
       } catch (error) {
-        console.error("Error saving order: ", error);
+        console.error("Error saving cart: ", error);
       }
     }
   };
@@ -106,7 +91,6 @@ const Checkout = () => {
               {["BREAKFAST", "LUNCH", "SNACKS", "DINNER"].map((type) => (
                 <button
                   type="button"
-                  required
                   className={`btn m-1 ${
                     mealTypes.includes(type)
                       ? "btn-primary m-1"
