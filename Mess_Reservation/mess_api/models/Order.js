@@ -15,6 +15,10 @@ const orderSchema = new mongoose.Schema({
     enum: ["pending", "completed", "failed"],
     default: "pending",
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   token: {
     type: String,
     required: true,
