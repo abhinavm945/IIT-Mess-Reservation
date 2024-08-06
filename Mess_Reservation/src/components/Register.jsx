@@ -40,7 +40,19 @@ function Register() {
   };
 
   return (
-    <div className="register-container">
+    <>
+    <img
+          src="https://th.bing.com/th/id/OIP.hfwtErNXjdbIMUC8t5pxagHaHa?rs=1&pid=ImgDetMain"
+          alt="Logo"
+          width="40%"
+          height="20%"
+          style={{
+            marginTop: "10px",
+            marginBottom: "10px",
+            marginLeft: "70px",
+          }}
+        />
+    <div className="login-container">
       <div className="register-card">
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>
@@ -113,6 +125,7 @@ function Register() {
         </Link>
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
+
+
 
 function Card() {
+  const navigate = useNavigate();
+  
+  const handleBookYourMeal = () => {
+    navigate("/checkout");
+  };
   return (
     <>
       <Link to="/Mess" className="card" style={{ display: "inline-block" }}>
@@ -33,7 +40,12 @@ function Card() {
           </p>
         </div>
       </Link>
-      <Link to="/Canteen" className="card" style={{ display: "inline-block" }}>
+      <div className="text-center mt-4">
+        <button className="btn btn-primary btn-lg m-2" onClick={handleBookYourMeal}>
+          BOOK YOUR MEAL
+        </button>
+      </div>
+      {/* <Link to="/Canteen" className="card" style={{ display: "inline-block" }}>
         <img
           src="https://www.shutterstock.com/image-photo/chef-standing-behind-full-lunch-600nw-1090719347.jpg"
           className="card-img-top"
@@ -47,7 +59,7 @@ function Card() {
             bulk of the content.
           </p>
         </div>
-      </Link>
+      </Link> */}
     </>
   );
 }

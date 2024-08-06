@@ -22,15 +22,11 @@ const Cart = () => {
         );
         setCartItems(response.data.orders);
 
-        // Debugging: Log the API response
-        console.log("API Response:", response.data.orders);
-
         // Calculate total price from the database
-        const total = response.data.orders.reduce((sum, cart) => {
-          // Debugging: Log the totalPrice for each cart item
-          console.log("Cart Total Price:", cart.itemPrice);
-          return sum + cart.itemPrice;
-        }, 0);
+        const total = response.data.orders.reduce(
+          (sum, cart) => sum + cart.itemPrice,
+          0
+        );
         setTotalPrice(total);
       } catch (error) {
         console.error("Error fetching cart items: ", error);
@@ -50,10 +46,15 @@ const Cart = () => {
         }
       );
       if (response.status === 200) {
-        const updatedCartItems = cartItems.filter((cart) => cart._id !== cartId);
+        const updatedCartItems = cartItems.filter(
+          (cart) => cart._id !== cartId
+        );
         setCartItems(updatedCartItems);
         // Recalculate total price after deletion
-        const total = updatedCartItems.reduce((sum, cart) => sum + cart.itemPrice, 0);
+        const total = updatedCartItems.reduce(
+          (sum, cart) => sum + cart.itemPrice,
+          0
+        );
         setTotalPrice(total);
       }
     } catch (error) {
@@ -70,66 +71,79 @@ const Cart = () => {
   };
 
   return (
-    <div className="container my-5">
-      <h1 className="text-center mb-4">Cart</h1>
-      <div className="card shadow">
-        <div className="card-body">
-          <h5 className="card-title">Your Cart</h5>
-          <hr />
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Meal Time</th>
-                <th scope="col">No. of Persons</th>
-                <th scope="col">Selected Dates</th>
-                <th scope="col">Price per Person</th>
-                <th scope="col">Price of the item</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((cart, index) =>
-                cart.cartData.map((cartItem, cartIndex) => (
-                  <tr key={`${cart._id}-${cartIndex}`}>
-                    <th scope="row">{index + 1}</th>
-                    <td>{cartItem.mealTypes?.join(", ") || "N/A"}</td>
-                    <td>{cartItem.persons || "N/A"}</td>
-                    <td>{cartItem.dates?.join(", ") || "N/A"}</td>
-                    <td>
-                      ₹{cartItem.persons > 1 ? (cartItem.itemPrice / cartItem.persons).toFixed(2) : cartItem.itemPrice}
-                    </td>
-                    <td>
-                      ₹{cartItem.itemPrice || "N/A"}
-                    </td>
-                    <td>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(cart._id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-          <div className="text-right">
-            <h4>Total Price: ₹{totalPrice}</h4>
-            <button
-              className="btn btn-primary btn-lg m-2"
-              onClick={handleProceedToPayment}
-            >
-              Proceed to Payment
-            </button>
-            <button
-              className="btn btn-secondary btn-lg m-2"
-              onClick={handleAddItem}
-            >
-              Add Item
-            </button>
-          </div>
+    <div className="">
+      <div className="container my-5">
+        <h1 className="text-center mb-4">Your Cart</h1>
+        <div className="cart-container shadow p-4 rounded">
+          {cartItems.length === 0 ? (
+            <div className="text-center">
+              <h4>Your cart is empty</h4>
+            </div>
+          ) : (
+            <>
+              <div className="table-responsive">
+                <table className="table table-hover">
+                  <thead className="thead-light">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Meal Time</th>
+                      <th scope="col">No. of Persons</th>
+                      <th scope="col">Selected Dates</th>
+                      <th scope="col">Price per Person</th>
+                      <th scope="col">Total Price</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cartItems.map((cart, index) =>
+                      cart.cartData.map((cartItem, cartIndex) => (
+                        <tr key={`${cart._id}-${cartIndex}`}>
+                          <th scope="row">{index + 1}</th>
+                          <td>{cartItem.mealTypes?.join(", ") || "N/A"}</td>
+                          <td>{cartItem.persons || "N/A"}</td>
+                          <td>{cartItem.dates?.join(", ") || "N/A"}</td>
+                          <td>
+                            ₹
+                            {cartItem.persons > 1
+                              ? (cartItem.itemPrice / cartItem.persons).toFixed(
+                                  2
+                                )
+                              : cartItem.itemPrice}
+                          </td>
+                          <td>₹{cartItem.itemPrice || "N/A"}</td>
+                          <td>
+                            <button
+                              className="btn btn-outline-danger btn-sm"
+                              onClick={() => handleDelete(cart._id)}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="d-flex justify-content-between align-items-center mt-4">
+                <h4>Total Price: ₹{totalPrice}</h4>
+                <div>
+                  <button
+                    className="btn btn-primary btn-lg m-2"
+                    onClick={handleProceedToPayment}
+                  >
+                    Proceed to Payment
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-lg m-2"
+                    onClick={handleAddItem}
+                  >
+                    Add Item
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

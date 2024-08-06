@@ -81,10 +81,10 @@ const Checkout = () => {
   }, [persons]);
 
   return (
-    <div>
+    <div className="about-title">
       <form className="card-checkout" onSubmit={handleCheckout}>
         <fieldset>
-          <legend className="bold">CHECKOUT PAGE</legend>
+          <legend className="bold">BOOK YOUR MEAL</legend>
           <div className="m-2">
             <label className="form-label">Select Meal Type</label>
             <div>

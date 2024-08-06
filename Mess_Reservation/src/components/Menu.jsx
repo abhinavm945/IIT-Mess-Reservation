@@ -252,6 +252,7 @@ const Menu = () => {
   const selectedMenu = menuItems[mealType?.toUpperCase()];
 
   return (
+    <div className="about-title">
     <div className="menu">
       {selectedMenu ? (
         <>
@@ -307,6 +308,7 @@ const Menu = () => {
       )}
       <Link to="/mess" className="back-link">Back to Mess</Link>
       <Link to="/checkout" className="back-link m-4">BOOK YOUR MEAL</Link>
+    </div>
     </div>
   );
 };

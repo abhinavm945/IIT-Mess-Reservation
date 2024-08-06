@@ -1,34 +1,35 @@
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import axios from "axios";
+// import { Link } from "react-router-dom";
+// import { useState, useEffect } from "react";
 
 const Cafe = () => {
-  const [cafeData, setCafeData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [cafeData, setCafeData] = useState(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const cafeHandler = async () => {
-      try {
-        const { data } = await axios.get(
-          "https://www.themealdb.com/api/json/v1/1/categories.php"
-        );
-        setCafeData(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err);
-        setLoading(false);
-      }
-    };
-    cafeHandler();
-  }, []);
+  // useEffect(() => {
+  //   const cafeHandler = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         "https://www.themealdb.com/api/json/v1/1/categories.php"
+  //       );
+  //       setCafeData(data);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError(err);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   cafeHandler();
+  // }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading data</p>;
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error loading data</p>;
 
   return (
     <>
-      <div className="cafeItems">
+      <h1 className="about-title">Nothing to show you now</h1>
+      {/* <div className="cafeItems">
         {cafeData?.categories.map((item, index) => (
           <div className="cafeitems" key={index}>
             <div className="card" style={{ display: "inline-block" }}>
@@ -50,7 +51,7 @@ const Cafe = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 };
