@@ -1,7 +1,5 @@
 .simple{
   color: #fff;
-
-
 }
 
 .text{
@@ -9,17 +7,40 @@
    display: inline-flex;
    width: 50%;
 }
-.about-title{
-  /* background-color:#166ac9; */
+
+.about-title {
   background-image: url(../public/iitcampus.jpeg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  background-size: 101%;
+  background-size: cover;
   width: 100%;
+  
 }
 
+@media (max-width: 1200px) {
+  .about-title {
+    background-size: cover;
+    height: 100vh; /* Ensures it covers the full height of the screen */
+  }
+}
 
+@media (max-width: 768px) {
+  .about-title {
+    background-size: 100% 100%; /* Ensures it fits within smaller screens */
+    background-attachment: scroll;
+    height: 103vh; /* Ensures it covers the full height of the screen */
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    background-size: 100% 100%; /* Ensures it fills the background on very small screens */
+    background-attachment: scroll;
+    height: 110vh; /* Ensures it covers the full height of the screen */
+    
+  }
+}
 
 
 /*Card.CSS --------------------------------------------------*/
@@ -80,24 +101,6 @@
   margin: 8px;
 }
 
-.card-checkout{
-  display: inline-block;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border: none;
-  padding: 10px;
-  margin: 16px;
-  width: 98%;
-  height: inherit;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: left;
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-decoration: none;
-}
 
 /* Media queries */
 
@@ -142,7 +145,7 @@
 
 
 
-/* Navbar.Css --------------------------------------------------*/
+/* Navbar.Css */
 
 .navbar {
   display: flex;
@@ -151,13 +154,16 @@
   padding: 20px;
   background-color: #00428e;
   color: #fff;
+  position: relative;
 }
 
 .logo {
   color: #fff;
-  text-decoration: none;
+  text-decoration: none; 
   font-size: 24px;
-  font-weight: bold;
+  font-weight: bold;   
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
@@ -168,7 +174,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 20;
+  margin-right: 20px;
 }
 
 .navLinks a {
@@ -180,6 +186,14 @@
 
 .profile {
   position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.shopping-logo {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .profileButton {
@@ -194,31 +208,6 @@
   border-radius: 50%;
 }
 
-.dropdownMenu {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.dropdownMenu a {
-  display: block;
-  padding: 10px 20px;
-  color: #333;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  
-
-}
-
-.dropdownMenu a:hover {
-  background-color: #f1f1f1;
-}
-
 .menuButton {
   display: none;
   background: none;
@@ -228,54 +217,70 @@
   cursor: pointer;
 }
 
+/* Responsive design */
+@media (max-width: 768px) {
+  .navLinks {
+    display: none; /* Hide navLinks in mobile and tablet view */
+  }
+
+  .menuButton {
+    display: block; /* Show menuButton in mobile and tablet view */
+  }
+
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .logo {
+    font-size: 15px;
+    margin-left: 5px;
+  }
+
+  .profile,
+  .shopping-logo {
+    margin-left: auto;
+  }
+
+  .profilePic1,
+  .shopping-logo img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 .menuLinks {
+  position: fixed;
+  left: -250px; /* Initially hidden */
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #00428e;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
-  background-color: #fff;
-  padding: 10px;
- margin: -0.45rem;
+  padding-top: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
 }
 
 .menuLinks a {
-  color: #2a89f5;
+  color: #fff;
   text-decoration: none;
   margin-bottom: 10px;
-  font-weight: 550;
+  padding: 10px 20px;
+  font-weight: bold;
 }
 
-
-/* Responsive design --------------------------------------------------*/
-
-@media (max-width: 768px) {
-  .navLinks {
-    display: none;
-  }
-  .menuButton {
-    display: block;
-  }
-  .navbar {
-    flex-direction: column;
-  }
-  .logo {
-    margin-bottom: 10px;
-  }
-  .profile {
-    margin-top: 10px;
-  }
+.menuLinks a:hover {
+  background-color: #2a89f5;
 }
 
-@media (max-width: 480px) {
-  .logo img {
-    width: 30px;
-    height: 30px;
-  }
-  .profileButton img {
-    width: 30px;
-    height: 30px;
-  }
+/* Visible Menu */
+.menuLinks.visible {
+  left: 0;
 }
+
 
 /*Dashboard.CSS --------------------------------------------------*/
 
@@ -359,7 +364,6 @@
 /*LOGIN CSS
 --------------------------------------------------*/
 /* Global Styles */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -375,7 +379,6 @@ body {
 }
 
 /* Login Container */
-
 .login-container {
   display: flex;
   justify-content: center;
@@ -385,7 +388,6 @@ body {
 }
 
 /* Login Card */
-
 .login-card {
   width: 100%;
   max-width: 400px;
@@ -394,10 +396,10 @@ body {
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  text-align: center;
 }
 
 /* Input Field */
-
 .input-field {
   position: relative;
   margin-bottom: 20px;
@@ -420,7 +422,6 @@ body {
 }
 
 /* Error Message */
-
 .error {
   color: red;
   font-size: 14px;
@@ -428,7 +429,6 @@ body {
 }
 
 /* Alternative Login */
-
 .alternative-login {
   margin-top: 20px;
 }
@@ -449,36 +449,95 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .login-container {
+    height: auto;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 40%;
+    max-height: 100%;
+  }
+
+  .login-card {
+    max-width: 90%;
+  }
+
+  .input-field input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .alternative-login button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .img-login {
+    width: 10%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+}
 
 @media (max-width: 768px) {
+  .login-container {
+    height: auto;
+    padding: 20px 15px;
+    flex-direction: column;
+  }
+
   .login-card {
-    width: 90%;
+    max-width: 100%;
     padding: 15px;
   }
+
   .input-field input {
     padding: 8px;
     font-size: 14px;
   }
+
   .alternative-login button {
     padding: 8px;
     font-size: 14px;
+  }
+
+  .img-login {
+    width: 60%;
+    height: auto;
+    margin-bottom: 20px;
   }
 }
 
 @media (max-width: 480px) {
+  .login-container {
+    height: auto;
+    padding: 10px;
+    flex-direction: column;
+  }
+
   .login-card {
-    width: 100%;
+    max-width: 100%;
     padding: 10px;
   }
+
   .input-field input {
     padding: 6px;
     font-size: 12px;
   }
+
   .alternative-login button {
     padding: 6px;
     font-size: 12px;
   }
+
+  .img-login {
+    width: 70%;
+    height: auto;
+    margin-bottom: 20px;
+  }
 }
+
 
 /* REGISTER CSS
 --------------------------------------------------*/
@@ -696,18 +755,6 @@ li {
 }
 
 
-
-.login-container{
-  position: absolute;
-  top: 50px
-  ;
-  right: 0;
-  width: 40%;
-  max-height: 100%;
-
-}
-
-
 /* Cart.css */
 .card {
   border: none;
@@ -837,4 +884,143 @@ li {
   .table thead th, .table th, .table td {
     font-size: 0.75rem;
   }
+}
+
+
+/*CHECKOUT.CSS ----------------------
+-------------------------------------------------*/
+
+.card-checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 20px;
+  margin:  auto;
+  width: 90%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-checkout fieldset {
+  border: none;
+  width: 100%;
+}
+
+.card-checkout legend {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.card-checkout label {
+  font-weight: bold;
+}
+
+.card-checkout .btn {
+  width: 100%;
+}
+
+.card-checkout h2 {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+
+.card-checkout p {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .card-checkout {
+    width: 70%;
+  }
+
+  .card-checkout h2 {
+    font-size: 1.5rem;
+  }
+
+  .card-checkout p {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-checkout {
+    width: 50%;
+    padding: 30px;
+  }
+
+  .card-checkout h2 {
+    font-size: 1.75rem;
+  }
+
+  .card-checkout p {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* Profile.css */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.profile-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+}
+
+.profile-card h1 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.profile-card p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #666;
+}
+
+.logout-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 200px;
+  margin-top: 1rem;
+}
+
+.logout-button:hover {
+  background-color: #0056b3;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  color: #666;
 }

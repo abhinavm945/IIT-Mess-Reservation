@@ -5,7 +5,7 @@ import { CartContext } from "../context/cardcontext";
 import axios from "axios";
 
 const Cart = () => {
-  const { cartData, setCartData } = useContext(CartContext);
+  const { cartData, setCartData, clearCart } = useContext(CartContext);
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
@@ -62,6 +62,27 @@ const Cart = () => {
     }
   };
 
+  const handleClearCart = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(
+        "http://localhost:3000/api/saveCart/clear",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (response.status === 200) {
+        setCartItems([]);
+        setTotalPrice(0);
+        clearCart(); // Clear the cart context
+        alert("Cart cleared successfully!");
+      }
+    } catch (error) {
+      console.error("Error clearing cart: ", error);
+      alert("Failed to clear the cart. Please try again.");
+    }
+  };
+
   const handleProceedToPayment = () => {
     navigate("/payment", { state: { totalPrice } });
   };
@@ -85,7 +106,7 @@ const Cart = () => {
                 <table className="table table-hover">
                   <thead className="thead-light">
                     <tr>
-                      <th scope="col">#</th>
+                      <th scope="col">S.no</th>
                       <th scope="col">Meal Time</th>
                       <th scope="col">No. of Persons</th>
                       <th scope="col">Selected Dates</th>
@@ -139,6 +160,12 @@ const Cart = () => {
                     onClick={handleAddItem}
                   >
                     Add Item
+                  </button>
+                  <button
+                    className="btn btn-danger btn-lg m-2"
+                    onClick={handleClearCart}
+                  >
+                    Clear Cart
                   </button>
                 </div>
               </div>

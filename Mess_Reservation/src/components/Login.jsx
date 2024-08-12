@@ -27,7 +27,7 @@ function Login({ setIsLoggedIn }) {
 
   return (
     <>
-      <img
+      <img className="img-login"
         src="https://th.bing.com/th/id/OIP.hfwtErNXjdbIMUC8t5pxagHaHa?rs=1&pid=ImgDetMain"
         alt="Logo"
         width="40%"

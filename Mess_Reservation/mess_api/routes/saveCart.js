@@ -63,16 +63,18 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.delete("/clear", async (req, res) => {
-  const userId = req.user.id; // Assuming user ID is available in req.user
-
+router.delete("/clear", authenticate, async (req, res) => {
   try {
-    await cart.deleteMany({ userId });
-    res.status(200).json({ message: "All orders deleted successfully" });
+    const result = await Cart.deleteMany({ userId: req.userId });
+
+    if (result.deletedCount > 0) {
+      return res.status(200).json({ message: "Cart cleared successfully." });
+    } else {
+      return res.status(404).json({ message: "No items found to clear." });
+    }
   } catch (error) {
-    console.error("Error clearing Cart:", error);
-    res.status(500).json({ message: "Error clearing Cart", error });
+    console.error("Error clearing cart:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
 module.exports = router;

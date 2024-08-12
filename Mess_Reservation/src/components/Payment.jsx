@@ -24,9 +24,12 @@ const Payment = () => {
 
         // Calculate total price from the database
         const total = response.data.orders.reduce((sum, cart) => {
-          return sum + cart.cartData.reduce((cartSum, item) => {
-            return cartSum + item.itemPrice;
-          }, 0);
+          return (
+            sum +
+            cart.cartData.reduce((cartSum, item) => {
+              return cartSum + item.itemPrice;
+            }, 0)
+          );
         }, 0);
         setTotalPrice(total);
       } catch (error) {
@@ -41,9 +44,6 @@ const Payment = () => {
     event.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      console.log("Cart Data:", cartItems); // Log cart data
-      console.log("Token:", token); // Log token
-
       // Save the order
       const response = await axios.post(
         "http://localhost:3000/api/saveOrder/save",
@@ -91,7 +91,10 @@ const Payment = () => {
                   <td>{cartItem.persons || "N/A"}</td>
                   <td>{cartItem.dates?.join(", ") || "N/A"}</td>
                   <td>
-                    ₹{cartItem.persons > 1 ? (cartItem.itemPrice / cartItem.persons).toFixed(2) : cartItem.itemPrice}
+                    ₹
+                    {cartItem.persons > 1
+                      ? (cartItem.itemPrice / cartItem.persons).toFixed(2)
+                      : cartItem.itemPrice}
                   </td>
                   <td>₹{cartItem.itemPrice || "N/A"}</td>
                 </tr>
