@@ -62,11 +62,11 @@ const Cart = () => {
     }
   };
 
-  const handleClearCart = async () => {
+  const handleClearCart = async (cartId) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        "http://localhost:3000/api/saveCart/clear",
+        `http://localhost:3000/api/saveCart/clear/${cartId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

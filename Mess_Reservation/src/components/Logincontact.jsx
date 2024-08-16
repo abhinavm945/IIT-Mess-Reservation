@@ -28,6 +28,7 @@ function Login({ setIsLoggedIn }) {
 
   return (
     <>
+    <div className="login-start">
       <img
         src="https://th.bing.com/th/id/OIP.hfwtErNXjdbIMUC8t5pxagHaHa?rs=1&pid=ImgDetMain"
         alt="Logo"
@@ -74,6 +75,7 @@ function Login({ setIsLoggedIn }) {
             <button type="submit">Signup</button>
           </Link>
         </div>
+      </div>
       </div>
     </>
   );

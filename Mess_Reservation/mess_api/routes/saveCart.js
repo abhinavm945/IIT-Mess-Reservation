@@ -63,18 +63,41 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.delete("/clear", authenticate, async (req, res) => {
+router.delete("/clear/:id", authenticate, async (req, res) => {
+  const userIdFromParams = req.params.id; // Extracting userId from the route parameters
+
   try {
-    const result = await Cart.deleteMany({ userId: req.userId });
+    // Extract the token from the Authorization header
+    const token = req.headers.authorization.split(" ")[1];
+
+    // Verify the token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (!decoded || !decoded._id) {
+      return res.status(401).json({ message: "Invalid token data" });
+    }
+
+    // Ensure that the userId from params matches the decoded token's user ID
+    if (userIdFromParams !== decoded._id.toString()) {
+      return res
+        .status(403)
+        .json({ message: "Unauthorized access to clear cart" });
+    }
+
+    // Perform the delete operation
+    const result = await Cart.deleteMany({
+      userId: mongoose.Types.ObjectId(userIdFromParams),
+    });
 
     if (result.deletedCount > 0) {
       return res.status(200).json({ message: "Cart cleared successfully." });
     } else {
       return res.status(404).json({ message: "No items found to clear." });
     }
-  } catch (error) {
-    console.error("Error clearing cart:", error);
+  } catch (err) {
+    console.error("Error:", err);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 module.exports = router;

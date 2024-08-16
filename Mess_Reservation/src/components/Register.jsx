@@ -40,8 +40,9 @@ function Register() {
   };
 
   return (
-    <>
-    <img
+    <div>
+      <div className="login-start">
+        <img
           src="https://th.bing.com/th/id/OIP.hfwtErNXjdbIMUC8t5pxagHaHa?rs=1&pid=ImgDetMain"
           alt="Logo"
           width="40%"
@@ -52,80 +53,81 @@ function Register() {
             marginLeft: "70px",
           }}
         />
-    <div className="login-container">
-      <div className="register-card">
-        <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <input
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+        <div className="login-container">
+          <div className="register-card">
+            <h2>Register</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <select
+                  value={countryCode}
+                  onChange={(e) => setCountryCode(e.target.value)}
+                >
+                  <option value="+91">+91</option>
+                  <option value="+1">+1</option>
+                  <option value="+44">+44</option>
+                  {/* Add more country codes as needed */}
+                </select>
+                <input
+                  type="text"
+                  placeholder="Contact"
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={cpassword}
+                  onChange={(e) => setCpassword(e.target.value)}
+                />
+              </div>
+              <button type="submit">Signup</button>
+            </form>
+            <p>Already Have an Account</p>
+            <Link to="/Login">
+              <button type="submit">Login</button>
+            </Link>
           </div>
-          <div className="input-group">
-            <select
-              value={countryCode}
-              onChange={(e) => setCountryCode(e.target.value)}
-            >
-              <option value="+91">+91</option>
-              <option value="+1">+1</option>
-              <option value="+44">+44</option>
-              {/* Add more country codes as needed */}
-            </select>
-            <input
-              type="text"
-              placeholder="Contact"
-              value={contact}
-              onChange={(e) => setContact(e.target.value)}
-            />
-          </div>
-          <div className="input-group">
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="input-group">
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="input-group">
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={cpassword}
-              onChange={(e) => setCpassword(e.target.value)}
-            />
-          </div>
-          <button type="submit">Signup</button>
-        </form>
-        <p>Already Have an Account</p>
-        <Link to="/Login">
-          <button type="submit">Login</button>
-        </Link>
+        </div>
       </div>
     </div>
-    </>
   );
 }
 

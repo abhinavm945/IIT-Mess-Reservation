@@ -178,7 +178,8 @@
 }
 
 .navLinks a {
-  margin-right: 20px;
+  font-size: 18px;
+  margin-right: 40px;
   color: #fff;
   text-decoration: none;
   font-weight: bold;
@@ -378,13 +379,17 @@ body {
   background-color: #f5f5f5;
 }
 
+.login-start{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-top: 60px;
+}
+
 /* Login Container */
 .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 20px;
+  padding-left: 50px;
+  width: 400px;
 }
 
 /* Login Card */
@@ -453,10 +458,6 @@ body {
   .login-container {
     height: auto;
     position: absolute;
-    top: 50px;
-    right: 0;
-    width: 40%;
-    max-height: 100%;
   }
 
   .login-card {
