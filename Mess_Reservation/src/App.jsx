@@ -6,7 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import axios from "axios";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import About from "./components/About";
 import Mess from "./components/Mess";
